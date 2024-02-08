@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import colors from "colors";
 import dotenv from "dotenv";
 import users from "./data/users.js";
