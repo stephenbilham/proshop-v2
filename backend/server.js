@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import productRoutes from "./routes/productRoutes.js";
 import connectDb from "./config/db.js";
-import { notFound, errorHandler } from "./middleware/ErrorMiddleware.js"; // Add this import statement
+import { notFound, errorHandler } from "./middleware/ErrorMiddleware.js";
 
 // Load environment variables
 dotenv.config();
