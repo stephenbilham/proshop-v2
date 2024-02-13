@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import connectDb from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/ErrorMiddleware.js";
 
@@ -15,6 +16,10 @@ connectDb();
 // Create an instance of express || const express = require("express"); same but using es modules
 const app = express();
 
+// Middleware to parse json data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Create a route
 app.get("/", (req, res) => {
 	res.send("Api is running...");
@@ -22,6 +27,9 @@ app.get("/", (req, res) => {
 
 // Create a route for products
 app.use("/api/products", productRoutes);
+
+// Create a route for users
+app.use("/api/users", userRoutes);
 
 // error handling middleware
 app.use(notFound);
