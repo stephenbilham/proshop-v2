@@ -39,6 +39,11 @@ app.use("/api/users", userRoutes);
 // Create a route for orders
 app.use("/api/orders", orderRoutes);
 
+// Create a route for paypal client id
+app.get("/api/config/paypal", (req, res) =>
+	res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
+);
+
 // error handling middleware
 app.use(notFound);
 app.use(errorHandler);
