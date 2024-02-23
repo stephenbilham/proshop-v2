@@ -1,8 +1,10 @@
+import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 import connectDb from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/ErrorMiddleware.js";
 import cookieParser from "cookie-parser";
@@ -39,10 +41,16 @@ app.use("/api/users", userRoutes);
 // Create a route for orders
 app.use("/api/orders", orderRoutes);
 
+// Create a route for image upload
+app.use("/api/upload", uploadRoutes);
+
 // Create a route for paypal client id
 app.get("/api/config/paypal", (req, res) =>
 	res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
 );
+
+const __dirname = path.resolve(); // set __dirname to current directory
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // error handling middleware
 app.use(notFound);
