@@ -20,11 +20,14 @@ const ProductListScreen = () => {
 		useDeleteProductMutation();
 
 	const deleteHandler = async (productId) => {
-		try {
-			await deleteProduct(productId);
-			refetch();
-		} catch (err) {
-			console.error(err);
+		if (window.confirm("Are you sure you want to delete this product?")) {
+			try {
+				await deleteProduct(productId);
+				toast.success("Product deleted successfully");
+				refetch();
+			} catch (err) {
+				console.error(err);
+			}
 		}
 	};
 
@@ -53,6 +56,7 @@ const ProductListScreen = () => {
 			</Row>
 
 			{loadingCreate && <Loader />}
+			{loadingDelete && <Loader />}
 
 			{isLoading ? (
 				<Loader />

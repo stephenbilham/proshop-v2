@@ -81,9 +81,9 @@ const updateProduct = asyncHandler(async (req, res) => {
 const deleteProduct = asyncHandler(async (req, res) => {
 	const product = await Product.findById(req.params.id);
 	if (product) {
-		await product.remove();
-		await product.save();
-		res.json({ message: "Product removed" });
+		await Product.deleteOne({ _id: req.params.id });
+		t;
+		res.status(200).json({ message: "Product removed" });
 	} else {
 		res.status(404);
 		throw new Error("Product not found");
