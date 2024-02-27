@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import { Link, useParams } from "react-router-dom";
 import Message from "../components/Message";
 import Paginate from "../components/Paginate";
+import ProductCarousel from "../components/ProductCarousel";
 
 const HomeScreen = () => {
 	// this was from the datbase before we used Redux Toolkit keeping for reference
@@ -47,7 +48,9 @@ const HomeScreen = () => {
 
 	return (
 		<div>
-			{keyword && (
+			{!keyword ? (
+				<ProductCarousel />
+			) : (
 				<Link to="/" className="btn btn-light">
 					Go Back
 				</Link>

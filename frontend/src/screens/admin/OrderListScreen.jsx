@@ -10,8 +10,6 @@ import Loader from "../../components/Loader";
 const OrderListScreen = () => {
 	const { data: orders, isLoading, isError, error } = useGetOrdersQuery();
 
-	console.log(orders, "sdfs");
-
 	const navigate = useNavigate();
 
 	return (

@@ -7,11 +7,15 @@ import {
 	updateProduct,
 	deleteProduct,
 	createProductReview,
+	getTopProducts,
 } from "../controllers/productController.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
 
 // Create a route for products
 router.route("/").get(getProducts).post(protect, admin, createProduct);
+
+// Create a route for top products
+router.get("/top", getTopProducts);
 
 // Create a route for products by id
 router

@@ -22,7 +22,6 @@ const ProductEditScreen = () => {
 	const [countInStock, setCountInStock] = useState(0);
 	const [description, setDescription] = useState("");
 
-	console.log(image, "?");
 	const {
 		data: product,
 		isLoading,
