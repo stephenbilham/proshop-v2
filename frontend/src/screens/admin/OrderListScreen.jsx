@@ -1,7 +1,6 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import { useGetOrdersQuery } from "../../slices/orderApiSlice";
 import Message from "../../components/Message";
@@ -9,9 +8,6 @@ import Loader from "../../components/Loader";
 
 const OrderListScreen = () => {
 	const { data: orders, isLoading, isError, error } = useGetOrdersQuery();
-
-	const navigate = useNavigate();
-
 	return (
 		<div>
 			{isLoading ? (
@@ -58,12 +54,6 @@ const OrderListScreen = () => {
 											Details
 										</Button>
 									</LinkContainer>
-									<Button
-										variant="danger"
-										className="btn-sm"
-										onClick={() => navigate(`/admin/order/${order._id}/edit`)}>
-										Edit
-									</Button>
 								</td>
 							</tr>
 						</tbody>
