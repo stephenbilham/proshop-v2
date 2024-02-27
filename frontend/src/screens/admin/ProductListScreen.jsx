@@ -13,8 +13,9 @@ import { useParams } from "react-router-dom";
 import Paginate from "../../components/Paginate";
 
 const ProductListScreen = () => {
-	const { pageNumber } = useParams();
+	const { pageNumber, keyword } = useParams();
 	const { data, isLoading, error, refetch } = useGetProductsQuery({
+		keyword,
 		pageNumber,
 	});
 
@@ -105,7 +106,12 @@ const ProductListScreen = () => {
 							))}
 						</tbody>
 					</Table>
-					<Paginate pages={data.pages} page={data.page} isAdmin />
+					<Paginate
+						pages={data.pages}
+						page={data.page}
+						isAdmin
+						keyword={keyword}
+					/>
 				</>
 			)}
 		</>

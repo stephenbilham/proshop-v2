@@ -2,7 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 import Loader from "../components/Loader";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Message from "../components/Message";
 import Paginate from "../components/Paginate";
 
@@ -18,13 +18,13 @@ const HomeScreen = () => {
 	// 	fetchProducts();
 	// }, []);
 
-	const { pageNumber } = useParams();
+	const { pageNumber, keyword } = useParams();
 
 	const {
 		data,
 		isLoading,
 		isError: error,
-	} = useGetProductsQuery({ pageNumber });
+	} = useGetProductsQuery({ keyword, pageNumber });
 
 	if (isLoading) {
 		return (
@@ -47,6 +47,11 @@ const HomeScreen = () => {
 
 	return (
 		<div>
+			{keyword && (
+				<Link to="/" className="btn btn-light">
+					Go Back
+				</Link>
+			)}
 			<h1>Latest Products</h1>
 			<Row>
 				{data.products.map((product) => (
@@ -54,7 +59,7 @@ const HomeScreen = () => {
 						<Product product={product} />
 					</Col>
 				))}
-				<Paginate pages={data.pages} page={data.page} />
+				<Paginate pages={data.pages} page={data.page} keyword={keyword} />
 			</Row>
 		</div>
 	);
