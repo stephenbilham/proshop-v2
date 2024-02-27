@@ -19,6 +19,7 @@ import Loader from "../components/Loader";
 import { addToCart } from "../slices/cartSlice";
 import { toast } from "react-toastify";
 import Message from "../components/Message";
+import Meta from "../components/Meta";
 
 const ProductScreen = () => {
 	const [qty, setQty] = useState(1);
@@ -77,6 +78,7 @@ const ProductScreen = () => {
 				Go Back
 			</Link>
 			<div>
+				<Meta title={product.name} />
 				<Row>
 					<Col md={5}>
 						<Image src={product.image} alt={product.name} fluid />
